@@ -1,22 +1,29 @@
-import React, {useState} from "react";
+import React, { useState } from "react"; 
 import { Container } from "@material-ui/core";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Home/Home";
 import Auth from "./components/Auth/Auth";
+import PostDetails from "./components/PostDetails/PostDetails";
 
 const App = () => {
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")))
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   return (
     <BrowserRouter>
-      <Container maxWidth="lg">
-        <Navbar user={user} setUser ={setUser}/>
+      <Container maxWidth="xl">
+        <Navbar user={user} setUser={setUser} />
         <Routes>
-          <Route path="/" element={<Home user={user}/>} />
-          <Route path="/auth" element={<Auth />} />
+          <Route path="/" exact element={<Navigate to="/posts" />} />
+          <Route path="/posts" exact element={<Home user={user} />} />
+          <Route path="/posts/search" element={<Home user={user} />} />
+          <Route path="/posts/:id" exact element={<PostDetails />} />
+          <Route
+            path="/auth"
+            eaxct element={!user ? <Auth /> : <Navigate to="/posts" />}
+          />
         </Routes>
       </Container>
-    </BrowserRouter>
+    </BrowserRouter> 
   );
 };
 

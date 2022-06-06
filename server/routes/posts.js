@@ -2,6 +2,8 @@ import express from "express";
 const router = express.Router();
 import {
   getPosts,
+  getPost,
+  getPostsBySearch,
   createPost,
   updatePost,
   deletePost,
@@ -10,7 +12,9 @@ import {
 import auth from "../middleware/auth.js";
 
 router.route("/").get(getPosts).post(auth, createPost);
-router.route("/:id").patch(auth, updatePost).delete(auth, deletePost);
+router.route("/:id").patch(auth, updatePost).delete(auth, deletePost)
 router.patch("/:id/likePost", auth, likePost);
+router.get("/search", getPostsBySearch);
+router.get("/:id", getPost)
 
 export default router;

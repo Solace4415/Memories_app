@@ -32,23 +32,15 @@ const Navbar = ({ user, setUser }) => {
 
   return (
     <AppBar className={classes.appBar} position="static" color="inherit">
-      <div className={classes.brandContainer}>
-        <Typography
-          component={Link}
-          to="/"
-          className={classes.heading}
-          variant="h3"
-          align="center"
-        >
-          Memories
-        </Typography>
+      <Link to="/" className={classes.brandContainer}>
+        <img src="https://i.ibb.co/cvkcJFm/memories-Text.png" alt="icon" height="45px"/>
         <img
           className={classes.image}
-          src="http://bit.ly/memories_image"
-          alt="memories"
-          height="50"
+          src="https://i.ibb.co/NyJqJWK/memories-Logo.png"
+          alt="icon"
+          height="40px"
         />
-      </div>
+      </Link>
       <Toolbar className={classes.toolbar}>
         {user ? (
           <div className={classes.profile}>
